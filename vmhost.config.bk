@@ -1,0 +1,4 @@
+#虚拟机登陆配置
+alias upfile='sh ~/vm/tfile.sh'
+#alias conn='~/connvm.sh'
+alias conn='/Users/chenjinlong/bazinga/connvm.sh'

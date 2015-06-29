@@ -1,4 +1,11 @@
-#!/bin/ksh
+#!/bin/bash
+echo $0
+echo $(pwd)
+filepath=$(dirname "$0");
+echo $filepath
+exit
+filepath=$(cd '$(dirname "$0")';pwd)
+echo $filepath
 bashpath=`pwd` 
 dirname $0|grep "^/" >/dev/null 
 if [ $? -eq 0 ];then 

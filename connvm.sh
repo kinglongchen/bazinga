@@ -1,7 +1,7 @@
 #bin/sh
 basepath=$(dirname $0)
-#configfile=$basepath"/"vmlist.ls
-configfile="./"vmlist.ls
+configfile=$basepath"/"vmlist.ls
+#configfile="./"vmlist.ls
 
 if [ ! -f ${configfile} ];then 
 	echo $configfile"文件非法"
@@ -31,17 +31,21 @@ while (($i<=$hostnum))
 		echo $i":" ${hostname[$i]} ${hostip[$i]}
 		i=$(($i+1))
 	done
-select=-1
+select=0
 while [ $select -lt 1 -o $select -gt $hostnum ] 
 	do
+		if [ $select = "quit" ];then
+			exit
+		fi
 		if ${isFirstInput};then
 			isFirstInput=false
 			echo "请选择:"
 		else
 			echo "请重新选择:"
 		fi
-		read select
-		
+		read input
+		select=$(echo ${input}|awk '/[^0-9]*/ {print $0}')
+#echo ${select}
 	done
 HOST=${hostip[$select]}
 USER=${username[$select]:=$D_USER}

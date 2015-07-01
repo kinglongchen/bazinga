@@ -34,7 +34,7 @@ while (($i<=$hostnum))
 select=0
 while [ $select -lt 1 -o $select -gt $hostnum ] 
 	do
-		if [ $select = "quit" ];then
+		if [ $select -eq -1 ];then
 			exit
 		fi
 		if ${isFirstInput};then
@@ -44,8 +44,17 @@ while [ $select -lt 1 -o $select -gt $hostnum ]
 			echo "请重新选择:"
 		fi
 		read input
-		select=$(echo ${input}|awk '/[^0-9]*/ {print $0}')
-#echo ${select}
+		select=$(echo ${input}|awk '{
+				if ($0~/[^0-9]+/ && $0!~/quit|exit/){
+					print 0
+				} 
+				if ($0~/exit|quit/){
+					print -1
+				}
+				if ($0~/[0-9]+/){
+					print $0
+				}
+				}')
 	done
 HOST=${hostip[$select]}
 USER=${username[$select]:=$D_USER}

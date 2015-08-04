@@ -1,4 +1,4 @@
-#bin/sh
+#/bin
 basepath=$(dirname $0)
 configfile=$basepath"/"vmlist.ls
 #configfile="./"vmlist.ls
@@ -62,4 +62,5 @@ HOST=${hostip[$select]}
 PORT=${port[$select]:=$D_PORT}
 USER=${username[$select]:=$D_USER}
 PW=${passwd[$select]:=$D_PW}
-ssh -v -i $AUTH_FILE $USER@$HOST -p $PORT
+echo 密码提示：${PW}
+ssh -i $AUTH_FILE $USER@$HOST -p $PORT

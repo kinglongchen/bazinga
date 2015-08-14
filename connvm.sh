@@ -10,7 +10,7 @@ fi
 D_USER=root
 D_PORT=22
 D_PW=Max6and7
-AUTH_FILE=~/.ssh/alivm_rsa
+AUTH_FILE=~/.ssh/id_rsa
 if [ ! -f $AUTH_FILE ];then
 	echo $AUTH_FILE"文件不存在"
 	exit 1
